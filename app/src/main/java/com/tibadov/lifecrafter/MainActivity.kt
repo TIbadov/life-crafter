@@ -24,11 +24,11 @@ class MainActivity : ComponentActivity() {
                     val count1 = remember { mutableStateOf(20) }
                     val count2 = remember { mutableStateOf(20) }
                     Column(modifier = Modifier.fillMaxSize()) {
-                        LifeCounter(count = count1, modifier = Modifier
+                        LifeCounterWithLog(count = count1, modifier = Modifier
                             .fillMaxHeight(0.5f)
                             .fillMaxWidth()
                             .rotate(180f))
-                        LifeCounter(count = count2, modifier = Modifier
+                        LifeCounterWithLog(count = count2, modifier = Modifier
                             .fillMaxWidth())
                     }
                 }

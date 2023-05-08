@@ -13,7 +13,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
@@ -53,7 +52,6 @@ private fun CounterButton(
 ) {
     val buttonOffset = 24.dp
     val fontSize = 36.sp
-    val coroutineScope = rememberCoroutineScope()
     val isLongPressActive = remember { mutableStateOf(false) }
     val countUpdateFunc = { if (isLeft) count.value-- else count.value++ }
 
@@ -66,7 +64,7 @@ private fun CounterButton(
                     onTap = {
                         countUpdateFunc()
                     },
-                    onLongPress = { offset ->
+                    onLongPress = {
                         isLongPressActive.value = true
                     },
                     onPress = {
