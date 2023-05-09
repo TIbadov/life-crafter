@@ -26,26 +26,24 @@ fun MainScreen(navController: NavController, modifier: Modifier = Modifier) {
     val count1 = remember { mutableStateOf(20) }
     val count2 = remember { mutableStateOf(20) }
     val showSnackbar = remember { mutableStateOf(false) }
-
     val snackbarHostState = remember { SnackbarHostState() }
 
     Box(modifier = modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
-            LifeCounterWithLog(
-                count = count1, modifier = Modifier
-                    .fillMaxHeight(0.5f)
-                    .fillMaxWidth()
-                    .rotate(180f)
-            )
-            Spacer(modifier = Modifier.weight(1f))
+            Box(Modifier.weight(1f)) {
+                LifeCounterWithLog(
+                    count = count1, modifier = Modifier
+                        .rotate(180f)
+                )
+            }
             ControlPanel(navController = navController, modifier = Modifier.align(Alignment.CenterHorizontally), onResetTap = {
                 showSnackbar.value = true
             })
-            Spacer(modifier = Modifier.weight(1f))
-            LifeCounterWithLog(
-                count = count2, modifier = Modifier
-                    .fillMaxWidth()
-            )
+            Box(Modifier.weight(1f)) {
+                LifeCounterWithLog(
+                    count = count2, modifier = Modifier
+                )
+            }
         }
 
         SnackbarHost(
@@ -61,7 +59,3 @@ fun MainScreen(navController: NavController, modifier: Modifier = Modifier) {
         }
     }
 }
-
-
-
-
