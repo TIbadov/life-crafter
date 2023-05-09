@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 Surface(color = MaterialTheme.colorScheme.background) {
                     NavHost(navController = navController, startDestination = "main") {
-                        composable("main") {
+                        composable(NavigationTarget.Main.route) {
                             Column(modifier = Modifier.fillMaxSize()) {
                                 // Add your app's main content here
 //                                val count1 = remember { mutableStateOf(20) }
@@ -60,26 +60,13 @@ class MainActivity : ComponentActivity() {
 //                                    LifeCounterWithLog(count = count2, modifier = Modifier
 //                                        .fillMaxWidth())
 //                                }
-                                IconButton(onClick = { navController.navigate("settings") }) {
+                                IconButton(onClick = { navController.navigate(NavigationTarget.Settings.route) }) {
                                     Icon(Icons.Default.Settings, contentDescription = "Settings")
                                 }
                             }
                         }
-                        composable("settings") {
-                            Column(modifier = Modifier.fillMaxSize()) {
-                                // Add your app's settings content here
-                                TopAppBar(
-                                    title = { Text("Settings") },
-                                    navigationIcon = {
-                                        IconButton(onClick = { navController.popBackStack() }) {
-                                            Icon(
-                                                Icons.Default.ArrowBack,
-                                                contentDescription = "Back"
-                                            )
-                                        }
-                                    }
-                                )
-                            }
+                        composable(NavigationTarget.Settings.route) {
+                            SettingsScreen(navController = navController)
                         }
                     }
                 }
