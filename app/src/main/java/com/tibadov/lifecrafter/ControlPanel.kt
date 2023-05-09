@@ -29,10 +29,9 @@ fun ControlPanel(navController: NavController, onResetTap: () -> Unit, modifier:
                 .pointerInput(Unit) {
                     detectTapGestures(
                         onLongPress = {
-                            println("^^^ Reset!")
+                            navController.navigate(NavigationTarget.Main.route)
                         },
                         onTap = {
-                            println("^^^ Warning!")
                             onResetTap()
                         }
                     )

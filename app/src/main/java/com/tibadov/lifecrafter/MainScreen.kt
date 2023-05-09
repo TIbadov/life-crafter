@@ -36,8 +36,11 @@ fun MainScreen(navController: NavController, modifier: Modifier = Modifier) {
                         .rotate(180f)
                 )
             }
-            ControlPanel(navController = navController, modifier = Modifier.align(Alignment.CenterHorizontally), onResetTap = {
-                showSnackbar.value = true
+            ControlPanel(
+                navController = navController,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                onResetTap = {
+                    showSnackbar.value = true
             })
             Box(Modifier.weight(1f)) {
                 LifeCounterWithLog(
