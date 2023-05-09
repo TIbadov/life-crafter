@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun LifeCounterWithLog(count: MutableState<Int>, modifier: Modifier = Modifier) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.fillMaxSize()) {
         LifeCounter(count = count, modifier = Modifier.fillMaxHeight(0.6f))
         LifeLog(count = count,modifier = Modifier.fillMaxSize())
     }
