@@ -48,22 +48,7 @@ class MainActivity : ComponentActivity() {
                 Surface(color = MaterialTheme.colorScheme.background) {
                     NavHost(navController = navController, startDestination = "main") {
                         composable(NavigationTarget.Main.route) {
-                            Column(modifier = Modifier.fillMaxSize()) {
-                                // Add your app's main content here
-//                                val count1 = remember { mutableStateOf(20) }
-//                                val count2 = remember { mutableStateOf(20) }
-//                                Column(modifier = Modifier.fillMaxSize()) {
-//                                    LifeCounterWithLog(count = count1, modifier = Modifier
-//                                        .fillMaxHeight(0.5f)
-//                                        .fillMaxWidth()
-//                                        .rotate(180f))
-//                                    LifeCounterWithLog(count = count2, modifier = Modifier
-//                                        .fillMaxWidth())
-//                                }
-                                IconButton(onClick = { navController.navigate(NavigationTarget.Settings.route) }) {
-                                    Icon(Icons.Default.Settings, contentDescription = "Settings")
-                                }
-                            }
+                            MainScreen(navController = navController)
                         }
                         composable(NavigationTarget.Settings.route) {
                             SettingsScreen(navController = navController)
