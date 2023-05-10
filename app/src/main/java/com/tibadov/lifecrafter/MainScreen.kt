@@ -23,10 +23,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 
 @Composable
-fun MainScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun MainScreen(navController: NavController, settingsStorage: SettingsStorage, modifier: Modifier = Modifier) {
     val counterStates = rememberSaveable { mutableStateOf(List(2) { CounterState() }) }
     val showSnackbar = remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
+    val resetAll = {
+        val startingValue = settingsStorage.getValue(SettingKeys.STARTING_VALUE) ?: 20
+        counterStates.value.forEach { counterState -> counterState.reset(startingValue) }
+    }
+//    resetAll()
 
     Box(modifier = modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
@@ -39,9 +44,7 @@ fun MainScreen(navController: NavController, modifier: Modifier = Modifier) {
             ControlPanel(
                 navController = navController,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
-                reset = {
-                        counterStates.value.forEach { counterState -> counterState.reset() }
-                },
+                reset = resetAll,
                 onResetTap = {
                     showSnackbar.value = true
             })

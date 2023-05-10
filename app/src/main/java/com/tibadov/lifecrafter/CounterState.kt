@@ -9,12 +9,8 @@ class CounterState() {
     var countLog: MutableList<Int> = mutableStateListOf()
     var lastUpdateTimeMs: Long = 0L
 
-    init {
-        reset()
-    }
-
-    fun reset() {
-        count.value = 20
+    fun reset(startingValue: Int) {
+        count.value = startingValue
         countLog.clear()
         countLog.add(count.value)
         lastUpdateTimeMs = 0

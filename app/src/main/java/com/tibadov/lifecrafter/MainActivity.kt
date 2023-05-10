@@ -39,19 +39,23 @@ import androidx.navigation.compose.rememberNavController
 
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var settingsStorage: SettingsStorage
+
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        settingsStorage = SettingsStorage(this)
         setContent {
             LifeCrafterTheme {
                 val navController = rememberNavController()
                 Surface(color = MaterialTheme.colorScheme.background) {
                     NavHost(navController = navController, startDestination = "main") {
                         composable(NavigationTarget.Main.route) {
-                            MainScreen(navController = navController)
+                            MainScreen(navController, settingsStorage)
                         }
                         composable(NavigationTarget.Settings.route) {
-                            SettingsScreen(navController = navController)
+                            SettingsScreen(navController, settingsStorage)
                         }
                     }
                 }
