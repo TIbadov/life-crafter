@@ -23,13 +23,13 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
 @Composable
-fun LifeCounter(count: MutableState<Int>, modifier: Modifier = Modifier) {
+fun LifeCounter(counterState: CounterState, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
     ) {
         Text(
-            text = count.value.toString(),
+            text = counterState.count.value.toString(),
             style = TextStyle(fontSize = 144.sp, fontWeight = FontWeight.Bold),
             modifier = Modifier
                 .align(Alignment.Center)
@@ -39,8 +39,8 @@ fun LifeCounter(count: MutableState<Int>, modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            CounterButton(isLeft = true, count = count)
-            CounterButton(isLeft = false, count = count)
+            CounterButton(isLeft = true, counterState = counterState)
+            CounterButton(isLeft = false, counterState = counterState)
         }
     }
 }
@@ -48,12 +48,12 @@ fun LifeCounter(count: MutableState<Int>, modifier: Modifier = Modifier) {
 @Composable
 private fun CounterButton(
     isLeft: Boolean,
-    count: MutableState<Int>
+    counterState: CounterState
 ) {
     val buttonOffset = 24.dp
     val fontSize = 36.sp
     val isLongPressActive = remember { mutableStateOf(false) }
-    val countUpdateFunc = { if (isLeft) count.value-- else count.value++ }
+    val countUpdateFunc = { if (isLeft) counterState.count.value-- else counterState.count.value++ }
 
     Box(
         modifier = Modifier
@@ -94,5 +94,4 @@ private fun CounterButton(
             countUpdateFunc()
         }
     }
-
 }

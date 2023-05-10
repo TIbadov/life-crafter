@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -23,8 +24,8 @@ import androidx.navigation.NavController
 
 @Composable
 fun MainScreen(navController: NavController, modifier: Modifier = Modifier) {
-    val count1 = remember { mutableStateOf(20) }
-    val count2 = remember { mutableStateOf(20) }
+    val count1 = remember { CounterState() }
+    val count2 = remember { CounterState() }
     val showSnackbar = remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -32,7 +33,7 @@ fun MainScreen(navController: NavController, modifier: Modifier = Modifier) {
         Column(modifier = Modifier.fillMaxSize()) {
             Box(Modifier.weight(1f)) {
                 LifeCounterWithLog(
-                    count = count1, modifier = Modifier
+                    counterState = count1, modifier = Modifier
                         .rotate(180f)
                 )
             }
@@ -44,7 +45,7 @@ fun MainScreen(navController: NavController, modifier: Modifier = Modifier) {
             })
             Box(Modifier.weight(1f)) {
                 LifeCounterWithLog(
-                    count = count2, modifier = Modifier
+                    counterState = count2, modifier = Modifier
                 )
             }
         }
