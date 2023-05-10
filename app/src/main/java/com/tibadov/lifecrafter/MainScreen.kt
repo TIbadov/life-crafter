@@ -24,8 +24,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun MainScreen(navController: NavController, modifier: Modifier = Modifier) {
-    val count1 = remember { CounterState() }
-    val count2 = remember { CounterState() }
+    val counterStates = rememberSaveable { mutableStateOf(List(2) { CounterState() }) }
     val showSnackbar = remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -33,19 +32,22 @@ fun MainScreen(navController: NavController, modifier: Modifier = Modifier) {
         Column(modifier = Modifier.fillMaxSize()) {
             Box(Modifier.weight(1f)) {
                 LifeCounterWithLog(
-                    counterState = count1, modifier = Modifier
+                    counterState = counterStates.value[0], modifier = Modifier
                         .rotate(180f)
                 )
             }
             ControlPanel(
                 navController = navController,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
+                reset = {
+                        counterStates.value.forEach { counterState -> counterState.reset() }
+                },
                 onResetTap = {
                     showSnackbar.value = true
             })
             Box(Modifier.weight(1f)) {
                 LifeCounterWithLog(
-                    counterState = count2, modifier = Modifier
+                    counterState = counterStates.value[1], modifier = Modifier
                 )
             }
         }

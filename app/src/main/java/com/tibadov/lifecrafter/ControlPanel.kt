@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun ControlPanel(navController: NavController, onResetTap: () -> Unit, modifier: Modifier = Modifier) {
+fun ControlPanel(navController: NavController, reset: () -> Unit, onResetTap: () -> Unit, modifier: Modifier = Modifier) {
     Row(modifier = modifier
         .fillMaxWidth()
     ) {
@@ -29,7 +29,7 @@ fun ControlPanel(navController: NavController, onResetTap: () -> Unit, modifier:
                 .pointerInput(Unit) {
                     detectTapGestures(
                         onLongPress = {
-                            navController.navigate(NavigationTarget.Main.route)
+                            reset()
                         },
                         onTap = {
                             onResetTap()
