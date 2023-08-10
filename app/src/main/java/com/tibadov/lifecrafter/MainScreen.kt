@@ -31,7 +31,7 @@ fun MainScreen(navController: NavController, settingsStorage: SettingsStorage, m
         val startingValue = settingsStorage.getValue(SettingKeys.STARTING_VALUE) ?: 20
         counterStates.value.forEach { counterState -> counterState.reset(startingValue) }
     }
-//    resetAll()
+    resetAll()
 
     Box(modifier = modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
